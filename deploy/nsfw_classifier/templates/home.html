@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>  
+</head>
+    <body>
+        <h1 class='contianer d-flex justify-content-center mt-5'>Find The Image is <span class="text-danger">&nbsp;SAFE&nbsp;</span> or <span class="text-success">&nbsp;NOT&nbsp;</span></h1>
+        <div class="container mt-1 pt-3">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                <img src='https://img.freepik.com/free-vector/internet-censorship-content-blocking-isometric-illustration-with-camera-watching-eye-symbols-surrounding-hands-holding-tablet_1284-56881.jpg?size=400&ext=jpg&ga=GA1.2.147323021.1682405037&semt=sph'>
+                <form action="imagefile" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <h2>Upload the image here</h2>
+                        <input required class="form-control" name='img' type="file" id="formFile">
+                      </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class='col-md-2'>
+                <div class="d-flex ms-5 ps-4" style="height: 500px;">
+                    <div class="vr"></div>
+                  </div>
+              </div>
+            <div class="col-md-5">
+                {% if result %}
+        <div class='contianer me-5 d-flex justify-content-center'>
+            {% if m == 1 %}
+            <div class="container">
+                <div class="ms-2 rounded-sm">
+                <img src='https://img.freepik.com/premium-vector/prohibition-stop-sign-forbidden-unlawful-allow-attention-warning-sign-banned-illegal-concept-businessman-climb-up-ladder-paint-prohibition-symbol-wall_212586-2053.jpg?size=440&ext=jpg&ga=GA1.2.147323021.1682405037&semt=sph'>
+                </div>
+                <div class="alert alert-danger mt-3" role="alert">
+                <h2 class="text-center">The Image is {{result}}</h2>
+                </div>
+              </div>
+            {% else %}
+            <div class="container">
+                <div class="ms-2 rounded-sm">
+                <img src='https://img.freepik.com/free-vector/man-who-thinks-idea-is-admired-by-thumbs-up_1150-35044.jpg?size=440&ext=jpg&ga=GA1.1.147323021.1682405037&semt=ais'>
+                </div>
+                <div class="alert alert-success mt-3" role="alert">
+                    <h2 class="text-center">The Image is {{result}}</h2>
+                </div>
+              </div>
+            {% endif %}
+        
+        </div>
+        {% else %}
+        <div class='contianer me-5 d-flex justify-content-center'>
+            <br><br>    
+        </div>
+        {% endif %}
+        </div>
+    </div>
+
+    </div>
+        
+    </body>
+</html>
